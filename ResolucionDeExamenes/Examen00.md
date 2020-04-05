@@ -1,5 +1,7 @@
 UTN FRBA – SSL – K2051 – Examen #0 – Recuperatorio #0 – 2020-03-30
+
 Parte I
+
     1. La tarea principal del ingeniero en sistemas es la sistematización y la automatización de procesos, siguiendo una lógica y un orden  que tal que el resultado sea el esperado. 
 
     2. La información es un conjunto organizado de datos procesados, que constituyen un mensaje. Es necesario haber recolectado suficiente información, para que se convierta en conocimiento.  
