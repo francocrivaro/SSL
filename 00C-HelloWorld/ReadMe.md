@@ -1,0 +1,1 @@
+El compilador utilizado es MinGW, en su versión 9.0.2.
