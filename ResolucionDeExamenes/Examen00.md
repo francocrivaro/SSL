@@ -11,10 +11,10 @@ Parte I
     Y en el tercer nivel, Gestión de Datos.
 
     4. Las asignaturas del área de sistemas de información son: en el primer nivel, Sistemas y Organizaciones.
-    En segundo nivel, Análisis de Sistemas. En tercer nivel, Diseño de Sistemas. 
+    En segundo nivel, Análisis de Sistemas. En tercer nivel, Diseño de Sistemas. En cuarto nivel, administracion de recursos. Y en quinto nivel, proyecto final. 
 
-    5. El paradigma aplicado en primer año, es el paradigma imperativo. Consiste en efectuar, paso a paso, una serie de transformaciones en los datos almacenados hasta que al final, represente el resultado correcto.
-
+    5. El paradigma aplicado en primer año, es el paradigma paradigma procedural, del tipo imperativo consiste en efectuar, paso a paso, una serie de transformaciones en los datos almacenados hasta que al final, represente el resultado correcto. 
+   
     6. La abstracción es un proceso mental, que conlleva a la simplificación del problema. Consiste en prestar particular atención
     a los detalles relevantes del problema, e ignorar los irrelevantes.  
 
@@ -54,7 +54,7 @@ Parte III
 
     7. Un tipo de dato abstracto es un modelo que define valores y las operaciones que se pueden realizan sobre ellos. Se denomina abstracto ya que la intención es que quien lo utiliza, no necesita conocer los detalles de la representación interna o bien el cómo están implementadas las operaciones.
 
-    8. Mientras que las pilas se manejan con la lógica LIFO (Last In First Out), dónde el último elemento en ser cargado es el primero en salir, las colas se manejan con la lógica FIFO (First In First Out), dónde el primer elemento en ser cargado es también el primero en salir. 
+    8. Mientras que las pilas se manejan con la lógica LIFO (Last In First Out), dónde el último elemento en ser cargado es el primero en salir, las colas se manejan con la lógica FIFO (First In First Out), dónde el primer elemento en ser cargado es también el primero en salir. Sin embargo, tienen en común que ambas son estructuras dinámicas.
 
     9. Un archivo es un conjunto organizado de unidades de información (bits) almacenados en un dispositivo. Los archivos pueden variar en tipo de contenido, en extensión, etc. 
 
