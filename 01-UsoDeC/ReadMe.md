@@ -1,0 +1,1 @@
+Trabajo práctico que pide enumerar al menos 3 tecnologías digitales de uso diario basadas en el Lenguaje C, y de ser posible, su repositorio público.
