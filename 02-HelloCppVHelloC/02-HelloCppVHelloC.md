@@ -16,13 +16,13 @@
         cout << "Hello World!" << endl;
         return 0;
     }
-    
+
 ----------------
 
 **Tabla comparativa:**
 
-|  | _Lenguaje C_ | _Lenguaje C++_ | _Conclusion_
-| :-------- | :-------: | --------: |
-| _Léxica_ | Operadores: "printf" y "/n" | Operadors: "cout" y "endl" | Ambos utilizan operadores de igual funcionalidad, pero de distinta léxica.
-| _Sintáctica_ | printf - mensaje - \n | cout - mensaje - endl | La secuencia de símbolos para formar la frase es la misma, es decir operador - frase - operador. 
-| _Semántica_ | | | Al ser sintácticamente muy parecidos, la semántica entonces también lo es.
+| _Casos de Estudio_ | _Lenguaje C_ | _Lenguaje C++_ | _Conclusion_ |
+| :-------- | :-------: | :--------: | --------:
+| _Léxica_ | Operadores: "printf" y "/n" | Operadors: "cout" y "endl" | Ambos utilizan operadores de igual funcionalidad, pero de distinta léxica. |
+| _Sintáctica_ | printf - mensaje - \n | cout - mensaje - endl | La secuencia de símbolos para formar la frase es la misma, es decir operador - frase - operador. |
+| _Semántica_ | - | - | Al ser sintácticamente muy parecidos, la semántica entonces también lo es. |
