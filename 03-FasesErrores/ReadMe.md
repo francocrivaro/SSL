@@ -13,7 +13,7 @@ Tarea 2: Secuencia de Pasos.
 2.4. La semántica de la primer línea de hello3.c refiere a una función de tipo int, que recibirá una cantidad variable de constantes de tipo char.
 
 2.5. Comando ejecutado: gcc -E hello3.c > hello3.i
-     Diferencias entre archivo hello3.c y hello3.i: el archivo .i incluye las definiciones "<built-in>" y "<command-line>".
+     Diferencias entre archivo hello3.c y hello3.i: el archivo .i incluye las definiciones "< built-in >" y "< command-line >".
 
 2.6. Comando ejecutado: gcc -S hello3.c
      Se obtuvo el siguiente error: "expected declaration or statement at end of input".
