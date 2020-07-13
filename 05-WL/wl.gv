@@ -1,0 +1,14 @@
+digraph MaquinaDeEstado {
+    
+    ranksep=2;
+
+    In [color="#FFE4E1" style=filled shape=box];
+    Out [color ="#FFE4B5" style=filled shape=box];
+
+    In -> In [label = "nc++"];
+    In -> Out [label = "  '' || '\t' / nc++"];
+    In -> Out [label = "'\n' / nl++, nc++"];
+    Out -> Out [label = "  '' || '\t' / nc++"];
+    Out -> Out [label= "'\n' / nl++, nc++"];
+    Out -> In [label= "nw++, nc++"];
+}
