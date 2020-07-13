@@ -1,26 +1,34 @@
 #include <stdio.h>
 
-void contadorRecursivo (int);
+#define In 1 /*en una palabra*/
+#define Out 0 /*fuera de una palabra */ 
+
+void contadorRecursivo (int, int);
+
+    int nl, nw, nc, c;
+    
 
 int main(){
-    int nl, nw, nc, c;
-    nl = nw= nc= 0;
+    nl = nw = nc = 0;
     c = 0;
-
+    int state = Out;
     while ((c = getchar()) != EOF)
     {
-        contadorRecursivo(c);
+        contadorRecursivo(Out, c);
     }
+    printf("Cantidad de lineas: %d \n", nl);
+    printf("Cantidad de palabras: %d \n", nw);
+    printf("Cantidad de caracteres: %d \n", nc);
 }
 
 
-/*void contadorRecursivo (c){
-    c = 0;
+void contadorRecursivo (int state, int c){
     nc++;
     if (c == '\n'){
         nl++;
         } else if(c == ' ' || c == '\t'){
             nw++;
-            n++;
-        }
-}*/
+        } else if (state == Out){
+            contadorRecursivo (In, c);
+        } 
+}
