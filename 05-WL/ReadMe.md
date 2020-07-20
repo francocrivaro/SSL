@@ -27,4 +27,7 @@ Donde F es el conjunto finito de estados finales: F=Q.
 
 3. a.ii) Comparación de bibliografía vs. versión desarrollada en wl-1-enum-switch.c:
 
+Al estar modelando estados, es más práctico detallar todos los posibles estados en enum y typedef, en vez de tener que definir un #define para cada uno. Otra ventaja de los enum es que el compilador les asigna un int a cada variable, en vez de tener que hacerlo manualmente en un #define. 
 
+b) Implementaciones de goto's:  
+Toda estructura de control de muchos lenguajes esconden goto’s. Es más fácil pensar en ciclos y en condicionales que en goto’s. Un goto es una estructura de control de flujo de ejecución. Sirve para salir de un ciclo complicado, o para manejar errores. El caso más común de los goto's son en los compiladores, para manejar los distintos estados.  

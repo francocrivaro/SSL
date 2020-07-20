@@ -1,7 +1,8 @@
 #include <stdio.h>
 
-enum state {In, Out};
-typedef enum state State;
+typedef enum state{
+    In, Out
+} State;
 
 int main(){
     State state = Out;
