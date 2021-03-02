@@ -1,71 +1,105 @@
 #include "Parser.h"
 
-bool EsOperando(Token token);
-bool EsOperador(Token token);
-bool EsID(Token token);
-bool EsCST(Token token);
-bool EsSUM(Token token);
-bool EsMULT(Token token);
-
-void Parser(void) {
+void Parser(void)
+{
     Token tokenAnterior = INICIAL;
     Token tokenActual = GetNextToken();
-    switch(tokenActual) {
+
+    parseoInicial(tokenAnterior, tokenActual);
+    //printf("parseo inicial exitoso\n");
+
+    while (tokenActual != FDE)
+    {
+        tokenAnterior = tokenActual;
+        tokenActual = GetNextToken();
+        printf("tokenAnterior: %i \n", tokenAnterior);
+        printf("tokenActual: %i \n", tokenActual);
+        printf("----------ciclo--------\n");
+        switch (tokenActual)
+        {
         case IDENTIFICADOR:
         case CONSTANTE:
-            parseoInicial(tokenAnterior, tokenActual);
+            parseoContinuo(tokenAnterior, tokenActual);
             break;
         case SUMA:
         case MULTIPLICADOR:
-            tokenEsOperando(tokenAnterior);
+            parseoContinuo(tokenAnterior, tokenActual);
             break;
         default:
             break;
+        }
+    }
+    printf("La expresion ingresada es valida\n");
+}
+
+void parseoInicial(Token tokenAnterior, Token tokenActual)
+{
+    if (tokenAnterior == INICIAL)
+    {
+        if (EsOperando(tokenActual))
+        {
+            return;
+        }
+        else
+        {
+            printf("El primer token leido no fue un operando\nLa expresion es invalida");
+            exit(0);
+        }
     }
 }
 
-void parseoInicial(tokenAnterior, tokenActual) {
-    if (tokenAnterior == INICIAL){
-        if (tokenEsOperando(tokenActual)){
-            return;
-        }
-    } else {
-            printf("Error en el primer token leido");
+void parseoContinuo(Token tokenAnterior, Token tokenActual)
+{
+    if (EsOperando(tokenAnterior) && EsOperador(tokenActual))
+    {
+        return;
     }
-    
-
+    else if (EsOperador(tokenAnterior) && EsOperando(tokenActual))
+    {
+        return;
+    }
+    else if (EsOperando(tokenAnterior) && EsOperando(tokenActual))
+    {
+        return;
+    }
+    else if (EsOperador(tokenAnterior) && EsOperador(tokenActual))
+    {
+        printf("Error lexico: dos operandores consecutivos");
+        exit(0);
+    }
 }
 
-
-bool EsOperando(token) {
-        if (tokenEsID(token) || tokenEsCST(token)) {
-            return;
-        } else {
-                printf("El Token leidoo nno es un operando\n");
-        }
+bool EsOperando(Token token)
+{
+    return (EsID(token) || EsCST(token));
 }
 
-bool EsOperador(token) {
-    return 1;
-        if (tokenEsSUM(token) || tokenEsMULT(token)) {
-            return;
-        } else {
-                printf("El token leido no es un operador\n");
-        }   
+bool EsOperador(Token token)
+{
+    return (EsSUM(token) || EsMULT(token) || esIGUAL(token));
 }
 
-bool EsID(token) {
-        return (token == IDENTIFICADOR);
+bool EsID(Token token)
+{
+    return (token == IDENTIFICADOR);
 }
 
-bool EsCST(token) {
-        return (token == CONSTANTE);
+bool EsCST(Token token)
+{
+    return (token == CONSTANTE);
 }
 
-bool EsSUM(token) {
+bool EsSUM(Token token)
+{
     return (token == SUMA);
 }
 
-bool EsMULT(token) {
+bool EsMULT(Token token)
+{
     return (token == MULTIPLICADOR);
+}
+
+bool esIGUAL(Token token)
+{
+    return (token == ASIGNADOR);
 }
