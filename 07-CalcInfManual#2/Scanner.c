@@ -5,12 +5,10 @@ Token GetNextToken(void)
     char carac;
     carac = getchar();
 
-    //printf("caracter actual %c\n", carac);
-
     if (esConstante(carac))
     {
         cargarBuffer(carac);
-        printf("Buffer cargado %d", carac);
+        printf("Buffer cargado %c\n", carac);
         return CONSTANTE;
     }
     if (esOperadorSuma(carac))
@@ -23,12 +21,21 @@ Token GetNextToken(void)
     }
     if (esIdentificador(carac))
     {
-        //cargarBuffer(carac);
+        cargarBuffer(carac);
+        //printf("Buffer cargado %c\n", carac);
         return IDENTIFICADOR;
     }
     if (esIgual(carac))
     {
         return ASIGNADOR;
+    }
+    if (esParentesisApertura(carac))
+    {
+        return PARENTESISAP;
+    }
+    if (esParentesisCierre(carac))
+    {
+        return PARENTESISCIER;
     }
     if (esFDE(carac))
     {
@@ -69,6 +76,16 @@ bool esIgual(char carac)
     return (carac == '=');
 }
 
+bool esParentesisApertura(char carac)
+{
+    return (carac == '(');
+}
+
+bool esParentesisCierre(char carac)
+{
+    return (carac == ')');
+}
+
 void cargarBuffer(char carac)
 {
     Buffer[posicionEnBuffer] = carac;
@@ -77,17 +94,18 @@ void cargarBuffer(char carac)
 
 void vaciarBuffer(void)
 {
-    int a;
-    for (a = 0; a < tamanioBuffer; a++)
+    int i;
+    for (i = 0; i < TAMANIO_BUFFER; i++)
     {
-        Buffer[a] = 0;
+        Buffer[i] = 0;
     }
+    posicionEnBuffer = 0;
 }
 
 void verBuffer(void)
 {
     int i;
-    for (i = 0; i < tamanioBuffer; i++)
+    for (i = 0; i < TAMANIO_BUFFER; i++)
     {
         printf("Buffer tiene: %c\n", Buffer[i]);
     }
@@ -97,32 +115,3 @@ int valorBuffer()
 {
     return atoi(Buffer);
 }
-
-//int main()
-//{
-//    int n = 0;
-//    while (n < 4)
-//    {
-//        char c = getchar();
-//        cargarBuffer(c);
-//        n++;
-//    }
-//    verBuffer();
-//    vaciarBuffer();
-//    printf("buffer borrado\n");
-//    verBuffer();
-//}
-//
-//         //GetNextToken();
-//        while (c != EOF)
-//        {
-//            cargarBuffer(c);
-//            printf("Buffer tiene: %d\n", Buffer[5]);
-//            i++;
-//            vaciarBuffer();
-//            printf("Buffer tiene: %d\n", Buffer[i]);
-//            i--;
-//            exit(0);
-//        }
-//}
-//

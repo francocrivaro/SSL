@@ -7,11 +7,14 @@ bool EsCST(Token);
 bool EsSUM(Token);
 bool EsMULT(Token);
 bool esIGUAL(Token);
+bool esAPERTURAPARENT(Token);
+bool esCIERREPARENT(Token);
 
 void Parser(void);
 void parseoInicial(Token, Token);
-void parseoContinuo(Token, Token);
+void parseoSecuencial(Token, Token);
 
 void realizarOperacion(Token);
 
-int resultadoExpresion = 0;
+static int resultadoExpresion = 0;
+static int contadorParentesis = 0;

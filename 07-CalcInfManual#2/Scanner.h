@@ -5,13 +5,15 @@
 
 typedef enum
 {
-    INICIAL,       //0
-    FDE,           //fin de expresion
-    SUMA,          //2
-    MULTIPLICADOR, //3
-    ASIGNADOR,     //4
-    IDENTIFICADOR, //5
-    CONSTANTE      //6
+    INICIAL,
+    FDE,
+    SUMA,
+    MULTIPLICADOR,
+    ASIGNADOR,
+    IDENTIFICADOR,
+    CONSTANTE,
+    PARENTESISAP,
+    PARENTESISCIER
 } Token;
 
 void Scanner(void);
@@ -24,13 +26,16 @@ bool esIdentificador(char);
 bool esFDE(char);
 bool esIgual(char);
 
+bool esParentesisApertura(char);
+bool esParentesisCierre(char);
+
 // iteracion #2
 
-#define tamanioBuffer 20
-char Buffer[tamanioBuffer] = {0};
-int posicionEnBuffer = 0;
+#define TAMANIO_BUFFER 6
+static char Buffer[TAMANIO_BUFFER] = {0};
+static int posicionEnBuffer = 0;
 
-void cargarBuffer(char);
+static void cargarBuffer(char);
 void verBuffer(void);
 void vaciarBuffer(void);
 int valorBuffer(void);
