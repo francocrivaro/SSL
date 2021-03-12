@@ -1,18 +1,23 @@
-SOURCE = Calc.c Scanner.c Parser.c
-BIN = Calc.exe
-OBJ = Calc.o Scanner.o Parser.o
+TARGET = Calc.exe
 CC = gcc
 CFLAGS = -std=c18 -g
-RM = rm -f
 
-$(BIN): $(OBJ)
-	$(CC) $(OBJ) -o $(BIN) $(CFLAGS)
+.PHONY: default all clean
 
-$(OBJ): $(SOURCE)
-	$(CC) -c $(SOURCE) $(CFLAGS)
+default: $(TARGET)
+all: default
 
-.PHONY: clean
+OBJECTS = $(patsubst %.c, %.o, $(wildcard *.c))
+HEADERS = $(wildcard *.h)
+
+%.o: %.c $(HEADERS)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+.PRECIOUS: $(TARGET) $(OBJECTS)
+
+$(TARGET): $(OBJECTS)
+	$(CC) $(OBJECTS) $(CFLAGS) $(LIBS) -o $@
+
 clean:
-	$(RM) $(OBJ) $(BIN)
-
-all: clean $(BIN)
+	-rm -f *.o
+	-rm -f $(TARGET)

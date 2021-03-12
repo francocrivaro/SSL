@@ -22,7 +22,7 @@ Token GetNextToken(void)
     if (esIdentificador(carac))
     {
         cargarBuffer(carac);
-        //printf("Buffer cargado %c\n", carac);
+        printf("Buffer cargado %s\n", Buffer);
         return IDENTIFICADOR;
     }
     if (esIgual(carac))
@@ -97,21 +97,22 @@ void vaciarBuffer(void)
     int i;
     for (i = 0; i < TAMANIO_BUFFER; i++)
     {
-        Buffer[i] = 0;
+        Buffer[i] = '\0';
     }
     posicionEnBuffer = 0;
 }
 
 void verBuffer(void)
 {
-    int i;
-    for (i = 0; i < TAMANIO_BUFFER; i++)
-    {
-        printf("Buffer tiene: %c\n", Buffer[i]);
-    }
+    printf("Buffer tiene: %s\n", Buffer);
 }
 
 int valorBuffer()
 {
     return atoi(Buffer);
+}
+
+char *obtenerBuffer(void)
+{
+    return Buffer;
 }

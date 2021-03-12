@@ -1,4 +1,5 @@
 #include "Parser.h"
+#include "Memoria.h"
 
 void Parser(void)
 {
@@ -12,9 +13,12 @@ void Parser(void)
     {
         tokenAnterior = tokenActual;
         tokenActual = GetNextToken();
-        printf("resultadoExpresion antes de recibir siguiente token: %i\n", resultadoExpresion);
         switch (tokenActual)
         {
+        case ASIGNADOR:
+            tokenDeOperacion = ASIGNADOR;
+            parseoSecuencial(tokenAnterior, tokenActual);
+            break;
         case IDENTIFICADOR:
         case CONSTANTE:
             parseoSecuencial(tokenAnterior, tokenActual);
@@ -29,32 +33,33 @@ void Parser(void)
             break;
         case PARENTESISAP:
             contadorParentesis++;
-            //printf("suma de un parentesis abierto\n");
             parseoSecuencial(tokenAnterior, tokenActual);
             break;
         case PARENTESISCIER:
             contadorParentesis--;
-            //printf("un parentesis restado\n");
-            //cargarBuffer(); CUANDO ME ENTRA UN PARENTESIS, EL BUFFER ESTA CARGADO CON 0 ENTONCES ANULA LOS RESULTADOS
-            realizarOperacion(tokenDeOperacion);
+            //verBuffer(); //CUANDO ME ENTRA UN PARENTESIS, EL BUFFER ESTA CARGADO CON 0 ENTONCES ANULA LOS RESULTADOS
+            parseoSecuencial(tokenAnterior, tokenActual);
             break;
         case FDE:
+            if (asignacionEnProceso)
+            {
+                cargarValorMemoria(resultadoExpresion);
+                //indiceMemoria++;
+            }
             printf("cantidad de parentesis %i\n", contadorParentesis);
-            //realizarOperacion(tokenDeOperacion);
             if (contadorParentesis != 0)
             {
                 printf("Error Sintactico: cantidad distinta de parentesis de apertura y cierre\n");
                 exit(1);
             }
-            //realizarOperacion(tokenDeOperacion);
             break;
         default:
             break;
         }
-        printf("resultadoExpresion antes de recibir siguiente token: %i\n", resultadoExpresion);
     }
     printf("La expresion ingresada es valida\n");
-    printf("El resultado de la expresion evaluada es: %d", resultadoExpresion);
+    printf("El resultado de la expresion evaluada es: %d\n", resultadoExpresion);
+    printf("En memoria quedo guardado, en posicion %i, el identificador %s, con valor %i\n", indiceMemoria, memoria[indiceMemoria].id, memoria[indiceMemoria].valor);
 }
 
 void parseoInicial(Token tokenAnterior, Token tokenActual)
@@ -81,6 +86,11 @@ void parseoInicial(Token tokenAnterior, Token tokenActual)
 
 void parseoSecuencial(Token tokenAnterior, Token tokenActual)
 {
+    if (esCIERREPARENT(tokenActual))
+    {
+        printf("asdas\n");
+        return;
+    }
     if (EsOperando(tokenAnterior) && EsOperador(tokenActual))
     {
         realizarOperacion(tokenActual);
@@ -163,24 +173,36 @@ void realizarOperacion(Token tipoOperador)
     {
     case SUMA:
         resultadoExpresion += valorBuffer();
-        //printf("en buffer:%i\n", valorBuffer());
+        vaciarBuffer();
+
         break;
     case MULTIPLICADOR:
         if (resultadoExpresion == 0)
         {
-            printf("ENTRE EN MULTI:%i\n", valorBuffer());
+            printf("No deberia entrar\n");
             resultadoExpresion = valorBuffer();
         }
         else
         {
-            printf("ENTRE EN MULTIplicacion:%i\n", valorBuffer());
             resultadoExpresion *= valorBuffer();
-            printf("resultado de expresion dentro de realizar operacion:%i\n", resultadoExpresion);
+        }
+        vaciarBuffer();
+        break;
+    case ASIGNADOR:
+        if (!asignacionEnProceso)
+        {
+            cargarIdMemoria(obtenerBuffer());
+            asignacionEnProceso = true;
+            vaciarBuffer();
+        }
+        else
+        {
+            resultadoExpresion = valorBuffer();
         }
         break;
     default:
-        //printf("no se aplico ninguna operacion\n");
+        vaciarBuffer();
         break;
     }
-    vaciarBuffer();
+    printf("Resulatado %i, Token = %i\n", resultadoExpresion, tipoOperador);
 }

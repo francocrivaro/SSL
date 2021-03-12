@@ -18,3 +18,4 @@ void realizarOperacion(Token);
 
 static int resultadoExpresion = 0;
 static int contadorParentesis = 0;
+static int asignacionEnProceso = 0;
