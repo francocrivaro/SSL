@@ -1,4 +1,4 @@
-
+#include <stdbool.h>
 #define TAMANIO_MEMORIA 10
 
 struct MemoriaAsignaciones
@@ -10,3 +10,5 @@ struct MemoriaAsignaciones
 void cargarIdMemoria(char *);
 static int indiceMemoria;
 void cargarValorMemoria(int);
+bool identificadorExisteEnMemoria(char *);
+int valorDeIdentificador(char *);

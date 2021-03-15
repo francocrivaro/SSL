@@ -1,16 +1,47 @@
 #include "Memoria.h"
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 void cargarIdMemoria(char *id)
 {
     strcpy(memoria[indiceMemoria].id, id);
-    printf("cargado en memoria: %s\n", memoria[indiceMemoria].id);
+    printf("cargado en memoria el id: %s\n", memoria[indiceMemoria].id);
 }
 
 void cargarValorMemoria(int valor)
 {
-    printf("valor %i", valor);
     memoria[indiceMemoria].valor = valor;
-    printf("cargado en memoria: %i\n", memoria[indiceMemoria].valor);
+    printf("cargado en memoria el valor: %i\n", memoria[indiceMemoria].valor);
+}
+
+int valorDeIdentificador(char *identificador)
+{
+    int i;
+    for (i = 0; i <= indiceMemoria; i++)
+    {
+        if ((strcmp(memoria[i].id, identificador) == 0))
+        {
+            return memoria[i].valor;
+        }
+    }
+}
+
+bool identificadorExisteEnMemoria(char *identificador)
+{
+    int i;
+    printf("entro en identificadorExistMem\n");
+    for (i = 0; i <= indiceMemoria; i++)
+    {
+        if (strcmp(memoria[i].id, identificador) == 0)
+        {
+            printf("El id ya estaba en memoria\n");
+            return true;
+        }
+        else
+        {
+            printf("El id no estaba en memoria\n");
+            return false;
+        }
+    }
 }

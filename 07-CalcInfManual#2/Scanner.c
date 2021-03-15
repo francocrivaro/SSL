@@ -86,6 +86,16 @@ bool esParentesisCierre(char carac)
     return (carac == ')');
 }
 
+bool esVariable(char *id)
+{
+    int i;
+    for (i = 0; i <= strlen(id); i++)
+    {
+        isalpha(id[i]);
+        return true;
+    }
+}
+
 void cargarBuffer(char carac)
 {
     Buffer[posicionEnBuffer] = carac;

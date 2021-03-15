@@ -43,3 +43,5 @@ char *obtenerBuffer(void);
 void verBuffer(void);
 void vaciarBuffer(void);
 int valorBuffer(void);
+
+bool esVariable(char *);
