@@ -32,7 +32,9 @@ Se pueden almacenar hasta 10 variables.
 ## Gramática utilizada 
 ### Gramática léxica
 
-    [0-9]+ 				{ CONSTANTE;}
+	G = { {S,N,I,O}, {x= [0-9], y= [a-zA-z], z= {"=","+","*",")","(","\n"}, {S -> (xN | yI | O), N -> x, I -> y, O -> z}, S}
+
+    [0-9]+		{ CONSTANTE;}
     [a-zA-z][a-zA-z]* 	{ IDENTIFICADOR;}
     
     "="  ASIGNADOR;
