@@ -30,7 +30,7 @@
 
 "(" return PARENTESISAP;
 
-'\n' return FDE; 
+"\n" return FDE; 
 
 . {
     printf("ERROR LEXICO: El caracter ingresado no es un TOKEN\n");

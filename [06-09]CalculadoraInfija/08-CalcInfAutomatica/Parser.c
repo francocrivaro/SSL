@@ -33,7 +33,6 @@ void Parser(void)
             parseoSecuencial(tokenAnterior, tokenActual);
             break;
         case SUMA:
-            printf("entre en case Suma\n");
             tokenDeOperacion = SUMA;
             parseoSecuencial(tokenAnterior, tokenActual);
             break;
@@ -180,7 +179,7 @@ void realizarOperacion(Token tipoOperador)
         vaciarBuffer();
         break;
     }
-    printf("Resultado %i \n", resultadoExpresion);
+    return;
 }
 
 bool EsOperando(Token token)

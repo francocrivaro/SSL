@@ -66,7 +66,7 @@ bool esIdentificador(char carac)
 
 bool esFDE(char carac)
 {
-    return (carac == '\n');
+    return (carac == "\n");
 }
 
 bool esIgual(char carac)
