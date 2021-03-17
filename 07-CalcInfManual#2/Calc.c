@@ -2,9 +2,7 @@
 
 int main(void)
 {
-    static int contadorExpresiones;
-    static int nroIteracionesMaximas = 5;
-    for (contadorParentesis = 0; contadorExpresiones <= nroIteracionesMaximas; contadorExpresiones++)
+    while (1)
     {
         printf("Ingresar expresion; \n");
         Parser();

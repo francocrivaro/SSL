@@ -8,7 +8,6 @@ Token GetNextToken(void)
     if (esConstante(carac))
     {
         cargarBuffer(carac);
-        printf("Buffer cargado %c\n", carac);
         return CONSTANTE;
     }
     if (esOperadorSuma(carac))
@@ -22,7 +21,6 @@ Token GetNextToken(void)
     if (esIdentificador(carac))
     {
         cargarBuffer(carac);
-        printf("Buffer cargado %s\n", Buffer);
         return IDENTIFICADOR;
     }
     if (esIgual(carac))
@@ -84,45 +82,4 @@ bool esParentesisApertura(char carac)
 bool esParentesisCierre(char carac)
 {
     return (carac == ')');
-}
-
-bool esVariable(char *id)
-{
-    int i;
-    for (i = 0; i <= strlen(id); i++)
-    {
-        isalpha(id[i]);
-        return true;
-    }
-}
-
-void cargarBuffer(char carac)
-{
-    Buffer[posicionEnBuffer] = carac;
-    posicionEnBuffer++;
-}
-
-void vaciarBuffer(void)
-{
-    int i;
-    for (i = 0; i < TAMANIO_BUFFER; i++)
-    {
-        Buffer[i] = '\0';
-    }
-    posicionEnBuffer = 0;
-}
-
-void verBuffer(void)
-{
-    printf("Buffer tiene: %s\n", Buffer);
-}
-
-int valorBuffer()
-{
-    return atoi(Buffer);
-}
-
-char *obtenerBuffer(void)
-{
-    return Buffer;
 }

@@ -45,16 +45,13 @@ void Parser(void)
             break;
         case PARENTESISCIER:
             contadorParentesis--;
-            //verBuffer(); //CUANDO ME ENTRA UN PARENTESIS, EL BUFFER ESTA CARGADO CON 0 ENTONCES ANULA LOS RESULTADOS
             parseoSecuencial(tokenAnterior, tokenActual);
             break;
         case FDE:
             if (asignacionEnProceso)
             {
-                //asignacionEnProceso = false;
                 cargarValorMemoria(resultadoExpresion);
             }
-            printf("cantidad de parentesis %i\n", contadorParentesis);
             if (contadorParentesis != 0)
             {
                 printf("Error Sintactico: cantidad distinta de parentesis de apertura y cierre\n");
@@ -78,7 +75,6 @@ void parseoInicial(Token tokenAnterior, Token tokenActual)
     {
         if (esAPERTURAPARENT(tokenActual))
         {
-            printf("suma de un parentesis abierto\n");
             contadorParentesis++;
             return;
         }
@@ -98,7 +94,6 @@ void parseoSecuencial(Token tokenAnterior, Token tokenActual)
 {
     if (esCIERREPARENT(tokenActual))
     {
-        printf("asdas\n");
         return;
     }
     if (EsOperando(tokenAnterior) && EsOperador(tokenActual))
@@ -183,13 +178,17 @@ void realizarOperacion(Token tipoOperador)
     switch (tipoOperador)
     {
     case SUMA:
-        //if (esVariable(idEnBuffer))
-        //{
-        if (identificadorExisteEnMemoria(idEnBuffer))
+        if (esVariable(idEnBuffer))
         {
-            printf("valor del identificador guardado %i\n", valorDeIdentificador(idEnBuffer));
-            resultadoExpresion += valorDeIdentificador(idEnBuffer);
-            printf("resultadoExpr %i\n", resultadoExpresion);
+            if (identificadorExisteEnMemoria(idEnBuffer))
+            {
+                resultadoExpresion += valorDeIdentificador(idEnBuffer);
+            }
+            else
+            {
+                printf("Error sintactico: el identificador no fue declarado previamente\n");
+                exit(0);
+            }
         }
         else
         {
@@ -210,7 +209,6 @@ void realizarOperacion(Token tipoOperador)
         vaciarBuffer();
         break;
     case ASIGNADOR:
-        printf("entro en case asignador\n");
         if (!asignacionEnProceso && !identificadorExisteEnMemoria(idEnBuffer))
         {
             cargarIdMemoria(obtenerBuffer());
@@ -226,5 +224,4 @@ void realizarOperacion(Token tipoOperador)
         vaciarBuffer();
         break;
     }
-    printf("Resulatado %i, Token = %i\n", resultadoExpresion, tipoOperador);
 }
